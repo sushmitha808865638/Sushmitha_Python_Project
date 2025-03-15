@@ -1,0 +1,51 @@
+#include<stdio.h>
+#include<conio.h>
+void quicksort(int a[],int low,int high)
+{
+int p;
+if(low<high)
+{
+p=partition(a,low,high);
+quicksort(a,low,p-1);
+quicksort(a,p+1,high);
+}
+}
+int partition(int a[],int low,int high)
+{
+int i,j,pivot,temp;
+pivot=a[low];
+i=low;
+j=high;
+while(i<j)
+{
+while(a[i]<=pivot)
+i++;
+while(a[j]>pivot)
+j--;
+if(i<j)
+{
+temp=a[i];
+a[i]=a[j];
+a[j]=temp;
+}
+}
+temp=a[low];
+a[low]=a[j];
+a[j]=temp;
+return j;
+}
+void main()
+{
+int i,n,a[100];
+clrscr();
+printf("enter size of array\t");
+scanf("%d",&n);
+printf("enter array elements \n");
+for(i=0;i<n;i++)
+scanf("%d",&a[i]);
+quicksort(a,0,n-1);
+printf("sorted array\n");
+for(i=0;i<n;i++)
+printf("%d\t",a[i]);
+getch();
+}
